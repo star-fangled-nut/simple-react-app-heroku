@@ -1,13 +1,17 @@
 import React from 'react'
 
-const DisplayName = ({displayName}) => {
+const DisplayName = ({displayName, totalUnits}) => {
     return (
         <div>
         { displayName.map((details) => (
             <p key={details.id}>
-            {details.id} - {details.firstName}
+            Date - {details.date}<br/>
+            Units - {details.units}
            </p>
         ))}
+        <p>
+               <b>Total Units - {totalUnits}</b>
+           </p>
         </div>
     )
 };
