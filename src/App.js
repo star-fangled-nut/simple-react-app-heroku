@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "react-bootstrap/NavBar";
-import Navbar from "react-bootstrap/Navbar";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import CurrentWeek from "./components/currentWeek";
@@ -27,8 +26,8 @@ class App extends Component {
       <StyledContainer>
         <BrowserRouter>
           <NavBar expand="sm" bg="primary" variant="dark" collapseOnSelect>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
+            <NavBar.Toggle aria-controls="responsive-navbar-nav" />
+            <NavBar.Collapse id="responsive-navbar-nav">
               <Nav>
                 <Nav.Item>
                   <LinkContainer to="/home">
@@ -46,7 +45,7 @@ class App extends Component {
                   </LinkContainer>
                 </Nav.Item>
               </Nav>
-            </Navbar.Collapse>
+            </NavBar.Collapse>
           </NavBar>
 
           <ContentDiv>
