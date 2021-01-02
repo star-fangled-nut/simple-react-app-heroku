@@ -82,21 +82,21 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:5000/api/drinksThisWeek")
+    fetch("https://immense-lowlands-99162.herokuapp.com/api/drinksThisWeek")
       .then((res) => res.json())
       .then((drinksData) => {
         this.setState({ drinks: drinksData });
       })
       .catch(console.log);
 
-    fetch("http://localhost:5000/api/totalUnitsThisWeek")
+    fetch("https://immense-lowlands-99162.herokuapp.com/api/totalUnitsThisWeek")
       .then((res) => res.json())
       .then((totalData) => {
         this.setState({ total: totalData });
       })
       .catch(console.log);
 
-    fetch("http://localhost:5000/api/currentWeek")
+    fetch("https://immense-lowlands-99162.herokuapp.com/api/currentWeek")
       .then((res) => res.json())
       .then((week) => {
         this.setState({ currentWeek: week });

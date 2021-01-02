@@ -33,7 +33,7 @@ export default class AddDrink extends Component {
       units: this.textInput.current.value,
     };
 
-    fetch("http://localhost:5000/api/addDrink", {
+    fetch("https://immense-lowlands-99162.herokuapp.com/api/addDrink", {
       method: "POST",
       headers: {
         "content-type": "application/json",
