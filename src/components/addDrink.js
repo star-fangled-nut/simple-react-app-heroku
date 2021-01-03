@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
-
 import styled from "styled-components";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
@@ -33,7 +32,7 @@ export default class AddDrink extends Component {
       units: this.textInput.current.value,
     };
 
-    fetch("https://immense-lowlands-99162.herokuapp.com/api/addDrink", {
+    fetch(`${process.env.REACT_APP_BASE_URL}api/addDrink`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
