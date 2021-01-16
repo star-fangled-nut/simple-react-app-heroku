@@ -18,18 +18,24 @@ export default class AddDrink extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.focusTextInput = this.focusTextInput.bind(this);
+    this.volume = React.createRef();
+    this.abv = React.createRef();
   }
 
-  focusTextInput() {
-    this.textInput.current.focus();
-  }
+  state = {
+    show: false,
+  };
+
+  toggle = () =>
+    this.setState((currentState) => ({ show: !currentState.show }));
 
   submitDrink(event) {
     event.preventDefault();
 
     let drink = {
       units: this.textInput.current.value,
+      volume: this.volume.current.value,
+      abv: this.abv.current.value,
     };
 
     fetch(`${process.env.REACT_APP_BASE_URL}api/addDrink`, {
@@ -47,6 +53,28 @@ export default class AddDrink extends Component {
     return (
       <ContentDiv>
         <Form onSubmit={this.submitDrink.bind(this)}>
+          <Form.Check
+            size="lg"
+            type="switch"
+            id="custom-switch"
+            label="Units Unknown"
+            onClick={this.toggle}
+          />
+          <InputGroup className="mb-3" size="lg">
+            <InputGroup.Prepend>
+              <InputGroup.Text>Volume(ml) and %</InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              ref={this.volume}
+              type="text"
+              onClick={this.focusTextInput}
+            />
+            <FormControl
+              ref={this.abv}
+              type="text"
+              onClick={this.focusTextInput}
+            />
+          </InputGroup>
           <InputGroup size="lg">
             <FormControl
               ref={this.textInput}
