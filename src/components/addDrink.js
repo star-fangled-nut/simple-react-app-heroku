@@ -18,14 +18,37 @@ export default class AddDrink extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
-    this.focusTextInput = this.focusTextInput.bind(this);
+    this.volume = React.createRef();
+    this.abv = React.createRef();
   }
 
-  focusTextInput() {
-    this.textInput.current.focus();
+  state = {
+    show: false,
+  };
+
+  toggle = () =>
+    this.setState((currentState) => ({ show: !currentState.show }));
+
+  submitUnitsCalculation(event) {
+    event.preventDefault();
+
+    let drink = {
+      volume: this.volume.current.value,
+      abv: this.abv.current.value,
+    };
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/addDrink`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(drink),
+    }).then((response) => response.json());
+
+    window.location.reload();
   }
 
-  submitDrink(event) {
+  submitUnits(event) {
     event.preventDefault();
 
     let drink = {
@@ -46,23 +69,55 @@ export default class AddDrink extends Component {
   render() {
     return (
       <ContentDiv>
-        <Form onSubmit={this.submitDrink.bind(this)}>
-          <InputGroup size="lg">
-            <FormControl
-              ref={this.textInput}
-              type="text"
-              onClick={this.focusTextInput}
-            />
-            <InputGroup.Append>
-              <InputGroup.Text>Units</InputGroup.Text>
-            </InputGroup.Append>
-          </InputGroup>
-          <ContentDiv>
-            <Button block type="submit" name="action">
-              Submit
-            </Button>
-          </ContentDiv>
-        </Form>
+        <Form.Check
+          size="lg"
+          type="switch"
+          id="custom-switch"
+          label="Units Unknown"
+          onClick={this.toggle}
+        />
+        {this.state.show ? (
+          <Form onSubmit={this.submitUnitsCalculation.bind(this)}>
+            <InputGroup className="mb-3" size="lg">
+              <FormControl
+                ref={this.volume}
+                type="text"
+                onClick={this.focusTextInput}
+              />
+              <FormControl
+                ref={this.abv}
+                type="text"
+                onClick={this.focusTextInput}
+              />
+              <InputGroup.Append>
+                <InputGroup.Text>Volume(ml) and %</InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
+            <ContentDiv>
+              <Button block type="submit" name="action">
+                Submit
+              </Button>
+            </ContentDiv>
+          </Form>
+        ) : (
+          <Form onSubmit={this.submitUnits.bind(this)}>
+            <InputGroup size="lg">
+              <FormControl
+                ref={this.textInput}
+                type="text"
+                onClick={this.focusTextInput}
+              />
+              <InputGroup.Append>
+                <InputGroup.Text>Units</InputGroup.Text>
+              </InputGroup.Append>
+            </InputGroup>
+            <ContentDiv>
+              <Button block type="submit" name="action">
+                Submit
+              </Button>
+            </ContentDiv>
+          </Form>
+        )}
       </ContentDiv>
     );
   }
