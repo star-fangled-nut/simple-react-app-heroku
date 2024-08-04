@@ -16,7 +16,7 @@ const CurrentWeek = ({ drinks }) => {
           {drinks.map((details) => (
             <tr key={details.id}>
               <td>{details.id}</td>
-              <td>{details.date}</td>
+              <td>{details.dateConsumed}</td>
               <td>{details.units}</td>
             </tr>
           ))}
