@@ -1,7 +1,7 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 
-const CurrentWeek = ({ drinks }) => {
+const PreviousWeek = ({ drinks }) => {
   return (
     <div>
       <Table striped bordered hover size="sm">
@@ -28,4 +28,4 @@ const CurrentWeek = ({ drinks }) => {
   );
 };
 
-export default CurrentWeek;
+export default PreviousWeek;

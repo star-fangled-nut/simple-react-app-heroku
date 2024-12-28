@@ -12,7 +12,7 @@ const ContentDiv = styled.div`
 `;
 
 
-const Home = ({currentWeek, total }) => {
+const Home = ({currentWeek, totalUnitsThisWeek, totalNumberOfDrinksThisWeek, previousWeek, totalUnitsLastWeek, totalNumberOfDrinksLastWeek }) => {
     return (
         <ContentDiv>
           <Table striped bordered hover size="sm">
@@ -33,8 +33,39 @@ const Home = ({currentWeek, total }) => {
                 <td>{currentWeek.endDate}</td>
               </tr>
               <tr>
-                <td>Units this week</td>
-                <td>{total}</td>
+                <td>Units</td>
+                <td>{totalUnitsThisWeek}</td>
+              </tr>
+            <tr>
+                <td>Number of drinks</td>
+                <td>{totalNumberOfDrinksThisWeek}</td>
+            </tr>
+              </tbody>
+          </Table>
+          <Table striped bordered hover size="sm">
+            <thead>
+              <tr>
+                <th colSpan="2">
+                  Previous Week
+                </th>
+              </tr>
+            </thead>
+              <tbody>
+              <tr>
+                  <td>Start Date</td>
+                  <td>{previousWeek.startDate}</td>
+              </tr>
+              <tr>
+                  <td>End Date</td>
+                  <td>{previousWeek.endDate}</td>
+              </tr>
+              <tr>
+                  <td>Units</td>
+                  <td>{totalUnitsLastWeek}</td>
+              </tr>
+              <tr>
+                  <td>Number of drinks</td>
+                  <td>{totalNumberOfDrinksLastWeek}</td>
               </tr>
               </tbody>
           </Table>

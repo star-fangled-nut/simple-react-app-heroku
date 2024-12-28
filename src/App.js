@@ -6,6 +6,7 @@ import CurrentWeek from "./components/currentWeek";
 import Home from "./components/home";
 import AddDrink from "./components/addDrink";
 import styled from "styled-components";
+import PreviousWeek from "./components/previousWeek";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -39,6 +40,11 @@ class App extends Component {
                   </LinkContainer>
                 </Nav.Item>
                 <Nav.Item>
+                  <LinkContainer to="/previousWeek">
+                    <Nav.Link>Previous Week</Nav.Link>
+                  </LinkContainer>
+                </Nav.Item>
+                <Nav.Item>
                   <LinkContainer to="/addDrink">
                     <Nav.Link>Log Drink</Nav.Link>
                   </LinkContainer>
@@ -55,13 +61,20 @@ class App extends Component {
               <Route exact path="/home">
                 <Home
                   currentWeek={this.state.currentWeek}
-                  total={this.state.total}
+                  totalUnitsThisWeek={this.state.totalUnitsThisWeek}
+                  totalNumberOfDrinksThisWeek={this.state.totalNumberOfDrinksThisWeek}
+                  previousWeek={this.state.previousWeek}
+                  totalUnitsLastWeek={this.state.totalUnitsLastWeek}
+                  totalNumberOfDrinksLastWeek={this.state.totalNumberOfDrinksLastWeek}
                 />
               </Route>
             </Switch>
             <Switch>
               <Route path="/currentWeek">
-                <CurrentWeek drinks={this.state.drinks} />
+                <CurrentWeek drinks={this.state.drinksThisWeek} />
+              </Route>
+              <Route path="/previousWeek">
+                <PreviousWeek drinks={this.state.drinksLastWeek} />
               </Route>
               <Route path="/addDrink">
                 <AddDrink />
@@ -74,23 +87,42 @@ class App extends Component {
   }
 
   state = {
-    drinks: [],
-    total: [],
+    drinksThisWeek: [],
+    drinksLastWeek: [],
+    totalUnitsThisWeek: [],
+    totalUnitsLastWeek: [],
     currentWeek: [],
+    previousWeek: [],
+    totalNumberOfDrinksThisWeek: [],
+    totalNumberOfDrinksLastWeek: [],
   };
 
   componentDidMount() {
     fetch(`${process.env.REACT_APP_BASE_URL}api/drinksThisWeek`)
       .then((res) => res.json())
       .then((drinksData) => {
-        this.setState({ drinks: drinksData });
+        this.setState({ drinksThisWeek: drinksData });
+      })
+      .catch(console.log);
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drinksLastWeek`)
+      .then((res) => res.json())
+      .then((drinksData) => {
+        this.setState({ drinksLastWeek: drinksData });
       })
       .catch(console.log);
 
     fetch(`${process.env.REACT_APP_BASE_URL}api/totalUnitsThisWeek`)
+        .then((res) => res.json())
+        .then((totalData) => {
+          this.setState({ totalUnitsThisWeek: totalData });
+        })
+        .catch(console.log);
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/totalUnitsLastWeek`)
       .then((res) => res.json())
       .then((totalData) => {
-        this.setState({ total: totalData });
+        this.setState({ totalUnitsLastWeek: totalData });
       })
       .catch(console.log);
 
@@ -100,6 +132,27 @@ class App extends Component {
         this.setState({ currentWeek: week });
       })
       .catch(console.log);
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/previousWeek`)
+      .then((res) => res.json())
+      .then((week) => {
+        this.setState({ previousWeek: week });
+      })
+      .catch(console.log);
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/totalNumberOfDrinksThisWeek`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ totalNumberOfDrinksThisWeek: data });
+        })
+        .catch(console.log);
+
+    fetch(`${process.env.REACT_APP_BASE_URL}api/totalNumberOfDrinksLastWeek`)
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ totalNumberOfDrinksLastWeek: data });
+        })
+        .catch(console.log);
   }
 }
 
