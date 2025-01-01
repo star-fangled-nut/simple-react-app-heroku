@@ -98,56 +98,56 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drinksThisWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/drinksThisWeek`)
       .then((res) => res.json())
       .then((drinksData) => {
         this.setState({ drinksThisWeek: drinksData });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drinksLastWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/drinksLastWeek`)
       .then((res) => res.json())
       .then((drinksData) => {
         this.setState({ drinksLastWeek: drinksData });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/totalUnitsThisWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsThisWeek`)
         .then((res) => res.json())
         .then((totalData) => {
           this.setState({ totalUnitsThisWeek: totalData });
         })
         .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/totalUnitsLastWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsLastWeek`)
       .then((res) => res.json())
       .then((totalData) => {
         this.setState({ totalUnitsLastWeek: totalData });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/currentWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/date/currentWeek`)
       .then((res) => res.json())
       .then((week) => {
         this.setState({ currentWeek: week });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/previousWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/date/previousWeek`)
       .then((res) => res.json())
       .then((week) => {
         this.setState({ previousWeek: week });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/totalNumberOfDrinksThisWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksThisWeek`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({ totalNumberOfDrinksThisWeek: data });
         })
         .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/totalNumberOfDrinksLastWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksLastWeek`)
         .then((res) => res.json())
         .then((data) => {
           this.setState({ totalNumberOfDrinksLastWeek: data });
