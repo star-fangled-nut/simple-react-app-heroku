@@ -62,10 +62,14 @@ class App extends Component {
                 <Home
                   currentWeek={this.state.currentWeek}
                   totalUnitsThisWeek={this.state.totalUnitsThisWeek}
-                  totalNumberOfDrinksThisWeek={this.state.totalNumberOfDrinksThisWeek}
+                  totalNumberOfDrinksThisWeek={
+                    this.state.totalNumberOfDrinksThisWeek
+                  }
                   previousWeek={this.state.previousWeek}
                   totalUnitsLastWeek={this.state.totalUnitsLastWeek}
-                  totalNumberOfDrinksLastWeek={this.state.totalNumberOfDrinksLastWeek}
+                  totalNumberOfDrinksLastWeek={
+                    this.state.totalNumberOfDrinksLastWeek
+                  }
                 />
               </Route>
             </Switch>
@@ -112,14 +116,18 @@ class App extends Component {
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsThisWeek`)
-        .then((res) => res.json())
-        .then((totalData) => {
-          this.setState({ totalUnitsThisWeek: totalData });
-        })
-        .catch(console.log);
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsThisWeek?consumedBy=Paul`
+    )
+      .then((res) => res.json())
+      .then((totalData) => {
+        this.setState({ totalUnitsThisWeek: totalData });
+      })
+      .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsLastWeek`)
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsLastWeek?consumedBy=Paul`
+    )
       .then((res) => res.json())
       .then((totalData) => {
         this.setState({ totalUnitsLastWeek: totalData });
@@ -140,19 +148,23 @@ class App extends Component {
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksThisWeek`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.setState({ totalNumberOfDrinksThisWeek: data });
-        })
-        .catch(console.log);
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksThisWeek`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ totalNumberOfDrinksThisWeek: data });
+      })
+      .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksLastWeek`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.setState({ totalNumberOfDrinksLastWeek: data });
-        })
-        .catch(console.log);
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksLastWeek`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({ totalNumberOfDrinksLastWeek: data });
+      })
+      .catch(console.log);
   }
 }
 
