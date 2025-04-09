@@ -134,14 +134,14 @@ class App extends Component {
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/date/currentWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/weeks/current`)
       .then((res) => res.json())
       .then((week) => {
         this.setState({ currentWeek: week });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/date/previousWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/weeks/previous`)
       .then((res) => res.json())
       .then((week) => {
         this.setState({ previousWeek: week });
