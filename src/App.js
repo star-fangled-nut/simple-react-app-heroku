@@ -102,14 +102,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/drinksThisWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drinks/drinksThisWeek`)
       .then((res) => res.json())
       .then((drinksData) => {
         this.setState({ drinksThisWeek: drinksData });
       })
       .catch(console.log);
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/drinksLastWeek`)
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drinks/drinksLastWeek`)
       .then((res) => res.json())
       .then((drinksData) => {
         this.setState({ drinksLastWeek: drinksData });
@@ -117,7 +117,7 @@ class App extends Component {
       .catch(console.log);
 
     fetch(
-      `${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsThisWeek?consumedBy=Paul`
+      `${process.env.REACT_APP_BASE_URL}api/drinks/totalUnitsThisWeek?consumedBy=Paul`
     )
       .then((res) => res.json())
       .then((totalData) => {
@@ -126,7 +126,7 @@ class App extends Component {
       .catch(console.log);
 
     fetch(
-      `${process.env.REACT_APP_BASE_URL}api/drink/totalUnitsLastWeek?consumedBy=Paul`
+      `${process.env.REACT_APP_BASE_URL}api/drinks/totalUnitsLastWeek?consumedBy=Paul`
     )
       .then((res) => res.json())
       .then((totalData) => {
@@ -149,7 +149,7 @@ class App extends Component {
       .catch(console.log);
 
     fetch(
-      `${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksThisWeek`
+      `${process.env.REACT_APP_BASE_URL}api/drinks/totalNumberOfDrinksThisWeek`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -158,7 +158,7 @@ class App extends Component {
       .catch(console.log);
 
     fetch(
-      `${process.env.REACT_APP_BASE_URL}api/drink/totalNumberOfDrinksLastWeek`
+      `${process.env.REACT_APP_BASE_URL}api/drinks/totalNumberOfDrinksLastWeek`
     )
       .then((res) => res.json())
       .then((data) => {

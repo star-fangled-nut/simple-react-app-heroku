@@ -37,7 +37,7 @@ export default class AddDrink extends Component {
       abv: this.abv.current.value,
     };
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/addDrink`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drinks`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -55,7 +55,7 @@ export default class AddDrink extends Component {
       units: this.textInput.current.value,
     };
 
-    fetch(`${process.env.REACT_APP_BASE_URL}api/drink/addDrink`, {
+    fetch(`${process.env.REACT_APP_BASE_URL}api/drinks`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
